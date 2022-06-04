@@ -28,7 +28,18 @@ class Animacao {
         this.limparTela();
 
         for(let i in this.sprites) {
-            this.sprites[i].atualizar();
+            const sprite = this.sprites[i]
+            sprite.atualizar();
+
+            if(
+                sprite.x < 0 || sprite.x > this.context.canvas.width ||
+                sprite.y < 0 || sprite.y > this.context.canvas.height
+            ) {
+                const index = this.sprites.indexOf(sprite);
+                if(index > -1) {
+                    this.sprites.splice(index, 1);
+                }
+            }
         }
         for(let i in this.sprites) {
             this.sprites[i].desenhar();

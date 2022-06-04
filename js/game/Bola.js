@@ -14,16 +14,6 @@ class Bola {
     }
 
     atualizar() {
-        const ctx = this.context;
-
-        if(this.x < this.raio || this.x > (ctx.canvas.width - this.raio)) {
-            this.velocidadeX *= -1;
-        }
-
-        if(this.y < this.raio || this.y > (ctx.canvas.height - this.raio)) {
-            this.velocidadeY *= -1;
-        }
-
         this.x += this.velocidadeX;
         this.y += this.velocidadeY;
     }
