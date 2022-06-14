@@ -2,6 +2,8 @@ class Teclado {
 
     static SETA_ESQUERDA = 'ArrowLeft';
     static SETA_DIREITA = 'ArrowRight';
+    static SETA_CIMA = 'ArrowUp';
+    static SETA_BAIXO = 'ArrowDown';
     static ESPACO = ' ';
 
     elemento;
