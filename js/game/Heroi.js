@@ -29,7 +29,7 @@ class Heroi {
         } else if(this.teclado.pressionada(Teclado.SETA_DIREITA) && this.x < (this.context.canvas.width - 20)) {
             this.direcaoVirado = this.OLHANDO_DIREITA;
             this.x += 10;
-        } 
+        }
     }
 
     desenhar() {
