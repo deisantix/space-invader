@@ -1,19 +1,21 @@
-import Animacao from "./game/Animacao.js";
-import Teclado from "./game/Teclado.js";
-import Heroi from "./game/Heroi.js";
+import Sonic from "./game/Sonic.js";
+import Teclado from './game/Teclado.js';
+import Animacao from './game/Animacao.js';
 
 const canvas = document.getElementById('canvas-animacao');
 const context = canvas.getContext('2d');
 
-const animacao = new Animacao(context);
 const teclado = new Teclado(document);
+const animacao = new Animacao(context);
 
-const heroi = new Heroi(context, teclado, animacao);
-heroi.x = 0;
-heroi.y = 100;
-animacao.novoSprite(heroi);
+const imgSonic = new Image();
+imgSonic.src = '../imgs/spritesheet.png';
 
-teclado.disparou(Teclado.ESPACO, function() {
-    heroi.atirar();
-});
-animacao.ligar();
+const sonic = new Sonic(context, teclado, imgSonic);
+sonic.x = 0;
+sonic.y = 200;
+animacao.novoSprite(sonic);
+
+imgSonic.onload = function() {
+    animacao.ligar();
+}
