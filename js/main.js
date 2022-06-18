@@ -1,21 +1,41 @@
-import Sonic from "./game/Sonic.js";
-import Teclado from './game/Teclado.js';
-import Animacao from './game/Animacao.js';
+import Bola from './game/Bola.js';
+import Colisor from './game/Colisor.js';
 
 const canvas = document.getElementById('canvas-animacao');
 const context = canvas.getContext('2d');
 
-const teclado = new Teclado(document);
-const animacao = new Animacao(context);
+function animar() {
+    context.clearRect(0, 0, canvas.width, canvas.height);
 
-const imgSonic = new Image();
-imgSonic.src = '../imgs/spritesheet.png';
+    b1.atualizar();
+    b2.atualizar();
 
-const sonic = new Sonic(context, teclado, imgSonic);
-sonic.x = 0;
-sonic.y = 200;
-animacao.novoSprite(sonic);
+    b1.desenhar();
+    b2.desenhar();
 
-imgSonic.onload = function() {
-    animacao.ligar();
+    colisor.processar();
+
+    requestAnimationFrame(animar);
 }
+
+const b1 = new Bola(context);
+b1.x = 200;
+b1.y = 200;
+b1.velocidadeX = 10;
+b1.velocidadeY = -5;
+b1.cor = 'blue';
+b1.raio = 20;
+
+const b2 = new Bola(context);
+b2.x = 300;
+b2.y = 300;
+b2.velocidadeX = -5;
+b2.velocidadeY = 10;
+b2.cor = 'red';
+b2.raio = 30;
+
+const colisor = new Colisor();
+colisor.novoSprite(b1);
+colisor.novoSprite(b2);
+
+requestAnimationFrame(animar);
