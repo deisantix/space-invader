@@ -1,3 +1,4 @@
+import Ovni from "./Ovni.js";
 import Teclado from "./Teclado.js";
 import Tiro from "./Tiro.js";
 
@@ -5,6 +6,7 @@ import Tiro from "./Tiro.js";
 class Nave {
 
     animacao;
+    colisor;
     context;
     teclado;
     imagem;
@@ -42,6 +44,33 @@ class Nave {
         
         const t = new Tiro(this.context, nave);
         this.animacao.novoSprite(t);
+        this.colisor.novoSprite(t);
+    }
+
+    retornarRetangulosDeColisao() {
+        const rets = [
+            {x: this.x + 2, y: this.y + 19, largura: 9, altura: 13},
+            {x: this.x + 13, y: this.y + 3, largura: 10, altura: 33},
+            {x: this.x + 25, y: this.y + 19, largura: 9, altura: 13}
+        ];
+        // const ctx = this.context;
+
+        // for (let i in rets) {
+        //     const r = rets[i];
+
+        //     ctx.save();
+        //     ctx.strokeStyle = 'yellow';
+        //     ctx.strokeRect(r.x, r.y, r.largura, r.altura);
+        //     ctx.restore();
+        // }
+        return rets;
+    }
+
+    colidirCom(sprite) {
+        if (sprite instanceof Ovni) {
+            this.animacao.desligar();
+            alert('GAME OVER');
+        }
     }
 
 }

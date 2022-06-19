@@ -1,5 +1,7 @@
 class Tiro {
 
+    animacao;
+    colisor;
     context;
     nave;
 
@@ -24,6 +26,11 @@ class Tiro {
 
     atualizar() {
         this.y -= this.velocidade;
+
+        if (this.y < -this.altura) {
+            this.animacao.excluirSprite(this);
+            this.colisor.excluirSprite(this);
+        }
     }
 
     desenhar() {
@@ -33,6 +40,16 @@ class Tiro {
         ctx.fillStyle = this.cor;
         ctx.fillRect(this.x, this.y, this.largura, this.altura);
         ctx.restore();
+    }
+
+    retornarRetangulosDeColisao() {
+        return [
+            {x: this.x, y: this.y, largura: this.largura, altura: this.altura}
+        ];
+    }
+
+    colidirCom(sprite) {
+
     }
     
 }

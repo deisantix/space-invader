@@ -1,7 +1,9 @@
 class Colisor {
 
+    animacao;
     sprites;
     aoColidir;
+    spritesExcluir = [];
 
     constructor() {
         this.sprites = [];
@@ -10,6 +12,7 @@ class Colisor {
 
     novoSprite(sprite) {
         this.sprites.push(sprite);
+        sprite.colisor = this;
     }
 
     processar() {
@@ -41,6 +44,7 @@ class Colisor {
                 }
             }
         }
+        this.processarExclusoes();
     }
 
     testarColisao(sprite1, sprite2) {
@@ -82,6 +86,22 @@ class Colisor {
                     'a:' + retangulos[i].altura + '\n';
         }
         return str;
+    }
+
+    excluirSprite(sprite) {
+        this.spritesExcluir.push(sprite);
+    }
+
+    processarExclusoes() {
+        const novoArray = [];
+
+        for (let i in this.sprites) {
+            if (this.spritesExcluir.indexOf(this.sprites[i]) === -1) {
+                novoArray.push(this.sprites[i]);
+            }
+        }
+        this.spritesExcluir = [];
+        this.sprites = novoArray;
     }
 
 }
