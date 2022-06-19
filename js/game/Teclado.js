@@ -18,7 +18,6 @@ class Teclado {
         this.elemento.addEventListener('keydown', function(ev) {
             const tecla = ev.key;
             teclado.pressionadas[tecla] = true;
-            console.log(teclado.pressionadas);
 
             if(teclado.funcoesDisparo[tecla] && !teclado.disparadas[tecla]) {
                 teclado.disparadas[tecla] = true;
